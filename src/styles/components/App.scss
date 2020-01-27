@@ -61,6 +61,7 @@ body,
         .filter {
           margin: 10px 10px 10px 0;
           cursor: pointer;
+          width: fit-content;
           .content {
             background-color: $color-2;
             padding: 10px;
