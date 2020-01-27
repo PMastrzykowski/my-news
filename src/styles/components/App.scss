@@ -1,0 +1,174 @@
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  background-color: $color-2;
+  font-family: "Lato";
+  color: $color-3;
+  #app {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 10px;
+    .articles {
+      width: calc(100% - 200px);
+      order: 3;
+      .article {
+        @include flexbox();
+        margin: 50px 0;
+        border-radius: 10px;
+        box-shadow: $shadow-1;
+        width: 100%;
+        .image {
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 10px 0 0 10px;
+          height: 200px;
+          min-width: 200px;
+          background-color: $color-4;
+        }
+        .content {
+          padding: 20px;
+          width: 100%;
+          box-sizing: border-box;
+          .header {
+            @include flexbox();
+            @include justify-content(space-between);
+            width: 100%;
+            .title {
+              font-size: 30px;
+            }
+            .date {
+              white-space: nowrap;
+              padding-left: 20px;
+              font-size: 16px;
+            }
+          }
+          .preamble {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+    .filters-wrapper {
+      margin-top: 50px;
+      width: 200px;
+      order: 2;
+      .filters {
+        @include flexbox();
+        @include flex-direction(column);
+        .filter {
+          margin: 10px 10px 10px 0;
+          cursor: pointer;
+          .content {
+            background-color: $color-2;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: $shadow-2;
+            width: min-content;
+            @include user-select-none();
+          }
+          input {
+            display: none;
+          }
+          input:checked ~ .content {
+            background-color: $color-5;
+            box-shadow: $shadow-2-inset;
+          }
+        }
+      }
+    }
+    .sort-wrapper {
+      @include flexbox();
+      @include justify-content(flex-end);
+      order: 1;
+      width: 100%;
+      .sort {
+        margin: 10px 0 10px 10px;
+        cursor: pointer;
+        .content {
+          background-color: $color-2;
+          padding: 10px 30px 10px 10px;
+          border-radius: 5px;
+          box-shadow: $shadow-2;
+          width: fit-content;
+          white-space: nowrap;
+          position: relative;
+          @include user-select-none();
+          .toggle {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 13px;
+            height: 29px;
+            background-image: url("./toggle.svg");
+          }
+        }
+        input {
+          display: none;
+        }
+        input:checked ~ .content {
+          .toggle {
+            background-position-x: 13px;
+          }
+        }
+      }
+    }
+    .error{
+      margin-top: 50px;
+      width: 100%;
+      background: $color-4;
+      color: $color-1;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #app {
+    margin: 50px auto !important;
+    .articles {
+      width: 100% !important;
+    }
+    .sort-wrapper {
+      order: 2 !important;
+      width: 50% !important;
+      margin-top: 19px !important;
+    }
+    .filters-wrapper {
+      order: 1 !important;
+      width: 50% !important;
+      margin-top: 0 !important;
+      .filters {
+        @include flex-direction(row!important);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #app {
+    margin: 0 auto !important;
+    .articles {
+      .article {
+        @include flex-direction(column!important);
+        .image {
+          border-radius: 10px 10px 0 0 !important;
+        }
+        .header {
+          @include flex-direction(column!important);
+          .title {
+            font-size: 20px !important;
+          }
+          .date {
+            font-size: 14px !important;
+            padding: 10px 0px !important;
+          }
+        }
+      }
+    }
+  }
+}
